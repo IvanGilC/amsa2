@@ -73,7 +73,7 @@ Resources:
           sudo yum update -y
           sudo yum install -y git aws-cfn-bootstrap
 
-          sudo git clone https://github.com/IvanGilC/amsa.git /opt/amsa
+          sudo git clone https://github.com/IvanGilC/amsa2.git /opt/amsa
 
           cd /opt/amsa
           sudo bash amsa_p3_server.sh
@@ -111,7 +111,7 @@ Resources:
           sudo yum update -y
           sudo yum install git -y
 
-          sudo git clone https://github.com/IvanGilC/amsa.git /opt/amsa
+          sudo git clone https://github.com/IvanGilC/amsa2.git /opt/amsa
           
           cd /opt/amsa
           export LDAP_SERVER=${OpenLDAPAMSAServer.PublicDnsName}
