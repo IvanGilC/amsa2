@@ -33,7 +33,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       VpcId: !Ref VpcId
-      GroupDescription: Security group para OpenLDAP AMSA Server y Client
+      GroupDescription: Security group para OpenLDAP AMSA Server y Clientes
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
@@ -60,7 +60,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: OpenLDAP-SG-AutoCd
+          Value: OpenLDAP-SG-AutoCreated
 
 
   ############################################################

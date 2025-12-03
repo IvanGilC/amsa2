@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # variables necessarias
-PASSWORD=$1
+PASSWORD="1234"
 VER="2.6.3"
 BASE="dc=amsa,dc=udl,dc=cat"
 PATH_PKI="/etc/pki/tls"
@@ -105,7 +105,7 @@ dn: olcDatabase=frontend,cn=config
 objectClass: olcDatabaseConfig
 objectClass: olcFrontendConfig
 olcDatabase: frontend
-olcPasswordHash: $HASH
+olcPasswordHash: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
 olcAccess: to dn.base=\"cn=Subschema\" by * read
 olcAccess: to *
   by dn.base=\"gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth\" manage
@@ -139,7 +139,7 @@ olcDbMaxSize: 42949672960
 olcDbDirectory: /var/lib/openldap
 olcSuffix: $BASE
 olcRootDN: cn=admin,$BASE
-olcRootPW: $HASH
+olcRootPW: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
 olcDbIndex: uid pres,eq
 olcDbIndex: cn,sn pres,eq,approx,sub
 olcDbIndex: mail pres,eq,sub
@@ -207,7 +207,7 @@ dn: cn=osproxy,ou=system,${BASE}
 objectClass: organizationalRole
 objectClass: simpleSecurityObject
 cn: osproxy
-userPassword: $HASH
+userPassword: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
 description: OS proxy for resolving UIDs/GIDs
 
 EOL1
@@ -237,7 +237,7 @@ uidNumber: ${uids[$j]}
 gidNumber: ${uids[$j]}
 homeDirectory: /home/${users[$j]}
 loginShell: /bin/bash
-userPassword: $HASH
+userPassword: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
 
 EOL3
 done
