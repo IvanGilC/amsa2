@@ -12,6 +12,10 @@ Parameters:
     Description: VPC donde se creara el Security Group
     Type: AWS::EC2::VPC::Id
 
+  SubnetId:
+    Description: Subnet donde se lanzaran los clientes (default)
+    Type: AWS::EC2::Subnet::Id
+
   LDAPPassword:
     Description: Contraseña de la base de datos
     Type: String
@@ -33,7 +37,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       VpcId: !Ref VpcId
-      GroupDescription: Security group para OpenLDAP AMSA Server y Clientes
+      GroupDescription: Security group para OpenLDAP AMSA Server y Client
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
@@ -77,6 +81,7 @@ Resources:
       SecurityGroupIds:
         - !Ref OpenLDAPAMSASG
       KeyName: !Ref KeyName
+      SubnetId: !Ref SubnetId
       ImageId: ami-0fa3fe0fa7920f68e
       UserData:
         Fn::Base64: !Sub |
@@ -99,7 +104,8 @@ Resources:
           nohup python3 -m http.server 8080 &
 
           # Señalar a CloudFormation que el servidor esta listo
-          /opt/aws/bin/cfn-signal --success true --stack ${AWS::StackName} --resource OpenLDAPAMSAServer --region ${AWS::Region}
+          /opt/aws/bin/cfn-signal --success true --stack ${AWS::StackName} \
+            --resource OpenLDAPAMSAServer --region ${AWS::Region}
 
       Tags:
         - Key: Name
@@ -122,6 +128,7 @@ Resources:
         NetworkInterfaces:
           - AssociatePublicIpAddress: true
             DeviceIndex: 0
+            SubnetId: !Ref SubnetId
             Groups:
               - !Ref OpenLDAPAMSASG
         UserData:
@@ -153,7 +160,8 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     DependsOn: OpenLDAPAMSAServer
     Properties:
-      VPCZoneIdentifier: []
+      VPCZoneIdentifier:
+        - !Ref SubnetId
       MinSize: !Ref ClientCount
       MaxSize: !Ref ClientCount
       DesiredCapacity: !Ref ClientCount
@@ -164,3 +172,4 @@ Resources:
         - Key: Name
           Value: OpenLDAP-Client-AutoCreated
           PropagateAtLaunch: true
+          
