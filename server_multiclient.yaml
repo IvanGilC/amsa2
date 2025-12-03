@@ -24,7 +24,7 @@ Parameters:
   ClientCount:
     Description: Numero de instancias Cliente a desplegar
     Type: Number
-    Default: 3
+    Default: 2
     MinValue: 1
     MaxValue: 50
 
@@ -172,4 +172,3 @@ Resources:
         - Key: Name
           Value: OpenLDAP-Client-AutoCreated
           PropagateAtLaunch: true
-          
