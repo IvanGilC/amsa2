@@ -17,12 +17,8 @@ Parameters:
     Type: String
     Default: "1234"
 
-  SubnetId:
-    Description: Subnet donde se lanzaran las instancias cliente (ASG)
-    Type: AWS::EC2::Subnet::Id
-
   ClientCount:
-    Description: Número de instancias Cliente a desplegar
+    Description: Numero de instancias Cliente a desplegar
     Type: Number
     Default: 3
     MinValue: 1
@@ -123,6 +119,11 @@ Resources:
         ImageId: ami-0fa3fe0fa7920f68e
         SecurityGroupIds:
           - !Ref OpenLDAPAMSASG
+        NetworkInterfaces:
+          - AssociatePublicIpAddress: true
+            DeviceIndex: 0
+            Groups:
+              - !Ref OpenLDAPAMSASG
         UserData:
           Fn::Base64: !Sub |
             #!/bin/bash
@@ -152,8 +153,7 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     DependsOn: OpenLDAPAMSAServer
     Properties:
-      VPCZoneIdentifier:
-        - !Ref SubnetId
+      VPCZoneIdentifier: []
       MinSize: !Ref ClientCount
       MaxSize: !Ref ClientCount
       DesiredCapacity: !Ref ClientCount
