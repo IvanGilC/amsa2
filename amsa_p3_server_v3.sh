@@ -247,8 +247,6 @@ done
 sudo ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/users.ldif
 
 # configuramos los certificados tls
-cat << EOL >> /tmp/create-tls.sh
-#!/bin/bash
 commonname=$HOSTNAME
 country=ES
 state=Spain
@@ -261,8 +259,6 @@ openssl req -days 500 -newkey rsa:4096 \
     -keyout "$PATH_PKI/ldapkey.pem" -nodes \
     -sha256 -x509 -out "$PATH_PKI/ldapcert.pem" \
     -subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
-EOL
-bash create-tls.sh
 
 # otorgamos los permisos necessarios
 sudo chown ldap:ldap "$PATH_PKI/ldapkey.pem"
