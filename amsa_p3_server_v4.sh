@@ -104,7 +104,7 @@ dn: olcDatabase=frontend,cn=config
 objectClass: olcDatabaseConfig
 objectClass: olcFrontendConfig
 olcDatabase: frontend
-olcPasswordHash: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
+olcPasswordHash: $HASH
 olcAccess: to dn.base=\"cn=Subschema\" by * read
 olcAccess: to *
   by dn.base=\"gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth\" manage
@@ -138,7 +138,7 @@ olcDbMaxSize: 42949672960
 olcDbDirectory: /var/lib/openldap
 olcSuffix: $BASE
 olcRootDN: cn=admin,$BASE
-olcRootPW: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
+olcRootPW: $HASH
 olcDbIndex: uid pres,eq
 olcDbIndex: cn,sn pres,eq,approx,sub
 olcDbIndex: mail pres,eq,sub
@@ -203,7 +203,7 @@ dn: cn=osproxy,ou=system,$BASE
 objectClass: organizationalRole
 objectClass: simpleSecurityObject
 cn: osproxy
-userPassword: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
+userPassword: $HASH
 description: OS proxy for resolving UIDs/GIDs
 EOL"
 
@@ -231,7 +231,7 @@ uidNumber: ${uids[$j]}
 gidNumber: ${uids[$j]}
 homeDirectory: /home/${users[$j]}
 loginShell: /bin/bash
-userPassword: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
+userPassword: $HASH
 EOL"
 done
 
