@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # variables necessarias
-PASSWORD="amsa"
+PASSWORD="1234"
 VER="2.6.3"
 BASE="dc=amsa,dc=udl,dc=cat"
 PATH_PKI="/etc/pki/tls"
