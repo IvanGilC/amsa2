@@ -66,7 +66,7 @@ WantedBy=multi-user.target
 EOL
 
 # generacion de contrasenas con SHA-512
-HASH=$(slappasswd -h "{SSHA512}" -s $PASSWORD -o module-load=pw-sha2.la -o module-path=/usr/local/libexec/openldap)
+HASH=$(slappasswd -h "{SSHA512}" -s "$PASSWORD" -o module-load=pw-sha2.la -o module-path=/usr/local/libexec/openldap)
 
 # CREACION DE BASE DE DATOS
 # creamos un fichero de configuracion
