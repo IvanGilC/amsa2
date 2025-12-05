@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # variables necessarias
-PASSWORD="1234"
+PASSWORD=$1
 VER="2.6.3"
 BASE="dc=amsa,dc=udl,dc=cat"
 PATH_PKI="/etc/pki/tls"
@@ -66,7 +66,7 @@ WantedBy=multi-user.target
 EOL
 
 # generacion de contrasenas con SHA-512
-#HASH=$(slappasswd -h "{SSHA512}" -s $PASSWORD -o module-load=pw-sha2.la -o module-path=/usr/local/libexec/openldap)
+HASH=$(slappasswd -h "{SSHA512}" -s $PASSWORD -o module-load=pw-sha2.la -o module-path=/usr/local/libexec/openldap)
 
 # CREACION DE BASE DE DATOS
 # creamos un fichero de configuracion
@@ -163,7 +163,7 @@ EOL
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/rootdn.ldif
 
 # creamos la configuracion para usuarios y grupos
-cat > /etc/openldap/basedn.ldif << EOL
+cat >> basedn.ldif << EOL
 dn: $BASE
 objectClass: dcObject
 objectClass: organization
@@ -188,7 +188,7 @@ ou: system
 EOL
 
 # cargamos la configuracion en la base de datos
-ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/basedn.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -f basedn.ldif
 
 # CREACION DE USUARIOS Y ROLES
 groups=("alumne" "profesor" "admin")
