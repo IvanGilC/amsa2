@@ -67,7 +67,6 @@ EOL
 
 # generacion de contrasenas con SHA-512
 #HASH=$(slappasswd -h "{SSHA512}" -s $PASSWORD -o module-load=pw-sha2.la -o module-path=/usr/local/libexec/openldap)
-HASH="{SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu"
 
 # CREACION DE BASE DE DATOS
 # creamos un fichero de configuracion
@@ -105,7 +104,7 @@ dn: olcDatabase=frontend,cn=config
 objectClass: olcDatabaseConfig
 objectClass: olcFrontendConfig
 olcDatabase: frontend
-olcPasswordHash: $HASH
+olcPasswordHash: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
 olcAccess: to dn.base=\"cn=Subschema\" by * read
 olcAccess: to *
   by dn.base=\"gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth\" manage
@@ -139,7 +138,7 @@ olcDbMaxSize: 42949672960
 olcDbDirectory: /var/lib/openldap
 olcSuffix: $BASE
 olcRootDN: cn=admin,$BASE
-olcRootPW: $HASH
+olcRootPW: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
 olcDbIndex: uid pres,eq
 olcDbIndex: cn,sn pres,eq,approx,sub
 olcDbIndex: mail pres,eq,sub
@@ -204,7 +203,7 @@ dn: cn=osproxy,ou=system,$BASE
 objectClass: organizationalRole
 objectClass: simpleSecurityObject
 cn: osproxy
-userPassword: $HASH
+userPassword: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
 description: OS proxy for resolving UIDs/GIDs
 EOL
 
@@ -232,7 +231,7 @@ uidNumber: ${uids[$j]}
 gidNumber: ${uids[$j]}
 homeDirectory: /home/${users[$j]}
 loginShell: /bin/bash
-userPassword: $HASH
+userPassword: {SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu
 EOL
 done
 
