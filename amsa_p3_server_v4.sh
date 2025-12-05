@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # variables necessarias
-PASSWORD="1234"
+PASSWORD="amsa"
 VER="2.6.3"
 BASE="dc=amsa,dc=udl,dc=cat"
 PATH_PKI="/etc/pki/tls"
@@ -66,7 +66,8 @@ WantedBy=multi-user.target
 EOL
 
 # generacion de contrasenas con SHA-512
-HASH=$(slappasswd -h "{SSHA512}" -s "$PASSWORD" -o module-load=pw-sha2.la -o module-path=/usr/local/libexec/openldap)
+#HASH=$(slappasswd -h "{SSHA512}" -s $PASSWORD -o module-load=pw-sha2.la -o module-path=/usr/local/libexec/openldap)
+HASH="{SSHA512}CBVaUdQC9mVvAi+0O92J3hA+aPdiWUqf4lVr6bGRAUsFJX5aFOEb+1pSsY8PQwW1UKuuCGO2+160HotnfjXIaRKlryVekLnu"
 
 # CREACION DE BASE DE DATOS
 # creamos un fichero de configuracion
