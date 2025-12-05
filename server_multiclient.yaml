@@ -95,9 +95,10 @@ Resources:
           git clone https://github.com/IvanGilC/amsa2.git /opt/amsa
           cd /opt/amsa
 
-          #export LDAPPassword=${LDAPPassword}
+          #LDAPPassword=${LDAPPassword}
           #bash amsa_p3_server_v2.sh $LDAPPassword
-          bash amsa_p3_server_v3.sh
+          PublicDNS=${OpenLDAPAMSAServer.PublicDnsName}
+          bash amsa_p3_server_v3.sh $PublicDNS
           bash amsa_p3_lam.sh
 
           cd /etc/pki/tls

@@ -2,11 +2,11 @@
 
 # variables necessarias
 PASSWORD="1234"
+HOSTNAME=$1
 VER="2.6.3"
 BASE="dc=amsa,dc=udl,dc=cat"
 PATH_PKI="/etc/pki/tls"
 DC="amsa"
-HOSTNAME="${HOSTNAME_OVERRIDE:-$HOSTNAME}"
 
 # instalamos herramientas necessarias para usar LDAP
 dnf install \
@@ -246,6 +246,8 @@ done
 # cargamos la configuracion en la base de datos
 sudo ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/users.ldif
 
+# conseguimos el hostname
+#HOSTNAME="${HOSTNAME_OVERRIDE:-$HOSTNAME}"
 # configuramos los certificados tls
 commonname=$HOSTNAME
 country=ES
