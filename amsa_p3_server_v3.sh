@@ -2,7 +2,6 @@
 
 # variables necessarias
 PASSWORD="1234"
-HOSTNAME=$1
 VER="2.6.3"
 BASE="dc=amsa,dc=udl,dc=cat"
 PATH_PKI="/etc/pki/tls"
@@ -248,6 +247,12 @@ sudo ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/users.ldif
 
 # conseguimos el hostname
 #HOSTNAME="${HOSTNAME_OVERRIDE:-$HOSTNAME}"
+TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" \
+      -H "X-aws-ec2-metadata-token-ttl-seconds: 3600")
+
+HOSTNAME=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" \
+      http://169.254.169.254/latest/meta-data/public-hostname)
+
 # configuramos los certificados tls
 commonname=$HOSTNAME
 country=ES

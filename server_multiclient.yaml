@@ -97,8 +97,7 @@ Resources:
 
           #LDAPPassword=${LDAPPassword}
           #bash amsa_p3_server_v2.sh $LDAPPassword
-          PublicDNS=${OpenLDAPAMSAServer.PublicDnsName}
-          bash amsa_p3_server_v3.sh $PublicDNS
+          bash amsa_p3_server_v3.sh
           bash amsa_p3_lam.sh
 
           cd /etc/pki/tls
