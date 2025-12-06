@@ -33,7 +33,7 @@ Resources:
   ############################################################
   # SECURITY GROUP
   ############################################################
-  OpenLDAPAMSASG:
+  OpenLDAPAMSASGTest:
     Type: AWS::EC2::SecurityGroup
     Properties:
       VpcId: !Ref VpcId
@@ -64,13 +64,13 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: OpenLDAP-SG-AutoCreated
+          Value: SG-AutoCreated
 
 
   ############################################################
   # INSTANCIA SERVER
   ############################################################
-  OpenLDAPAMSAServer:
+  OpenLDAPAMSAServerTest:
     Type: AWS::EC2::Instance
     DependsOn: OpenLDAPAMSASG
     CreationPolicy:
