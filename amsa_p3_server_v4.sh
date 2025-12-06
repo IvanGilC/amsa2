@@ -205,6 +205,7 @@ objectClass: simpleSecurityObject
 cn: osproxy
 userPassword: $HASH
 description: OS proxy for resolving UIDs/GIDs
+
 EOL"
 
 # Creacion de grupos
@@ -214,6 +215,7 @@ dn: cn=${groups[$j]},ou=groups,$BASE
 objectClass: posixGroup
 cn: ${groups[$j]}
 gidNumber: ${gids[$j]}
+
 EOL"
 done
 
@@ -232,6 +234,7 @@ gidNumber: ${uids[$j]}
 homeDirectory: /home/${users[$j]}
 loginShell: /bin/bash
 userPassword: $HASH
+
 EOL"
 done
 

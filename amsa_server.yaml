@@ -72,14 +72,14 @@ Resources:
   ############################################################
   OpenLDAPAMSAServerTest:
     Type: AWS::EC2::Instance
-    DependsOn: OpenLDAPAMSASG
+    DependsOn: OpenLDAPAMSASGTest
     CreationPolicy:
       ResourceSignal:
         Timeout: PT15M
     Properties:
       InstanceType: t2.micro
       SecurityGroupIds:
-        - !Ref OpenLDAPAMSASG
+        - !Ref OpenLDAPAMSASGTest
       KeyName: !Ref KeyName
       SubnetId: !Ref SubnetId
       ImageId: ami-0fa3fe0fa7920f68e
@@ -97,12 +97,6 @@ Resources:
 
           sudo bash amsa_p3_server_v4.sh ${LDAPPassword}
           #sudo bash amsa_p3_lam.sh
-
-          sudo cd /etc/pki/tls
-          nohup python3 -m http.server 8080 &
-
-          /opt/aws/bin/cfn-signal --success true --stack ${AWS::StackName} \
-            --resource OpenLDAPAMSAServer --region ${AWS::Region}
 
       Tags:
         - Key: Name
