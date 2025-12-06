@@ -196,6 +196,7 @@ gids=("4000" "5000" "6000")
 users=("user1" "user2" "user3" "user4" "user5" "user6" "user7" "user8" "user9")
 sns=("alumno1" "alumno2" "alumno3" "alumno4" "alumno5" "alumno6" "profesor1" "profesor2" "administrador")
 uids=("4001" "4002" "4003" "4004" "4005" "4006" "5001" "5002" "6001")
+guids=("4000" "4000" "4000" "4000" "4000" "4000" "5000" "5000" "6000")
 
 # Crear de usuarios osproxy
 bash -c "cat > /etc/openldap/users.ldif << EOL
@@ -230,7 +231,7 @@ cn: ${users[$j]}
 sn: ${sns[$j]}
 uid: ${users[$j]}
 uidNumber: ${uids[$j]}
-gidNumber: ${uids[$j]}
+gidNumber: ${guids[$j]}
 homeDirectory: /home/${users[$j]}
 loginShell: /bin/bash
 userPassword: $HASH
