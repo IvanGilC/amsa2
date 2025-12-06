@@ -21,11 +21,6 @@ Parameters:
     Type: String
     Default: "1234"
 
-  LAMPassword:
-    Description: Contrasena maestra de LAM
-    Type: String
-    Default: "12345"
-
   ClientCount:
     Description: Numero de instancias Cliente a desplegar
     Type: Number
@@ -101,10 +96,9 @@ Resources:
 
           cd /opt/amsa
           sudo bash amsa_p3_server_v4.sh ${LDAPPassword}
-          #sudo bash amsa_p3_lam_v2.sh ${LAMPassword}
-          sudo bash amsa_p3_lam.sh
+          #sudo bash amsa_p3_lam_v2.sh
 
-          sudo cd /etc/pki/tls
+          cd /etc/pki/tls
           nohup python3 -m http.server 8080 &
 
           /opt/aws/bin/cfn-signal --success true --stack ${AWS::StackName} \
@@ -146,8 +140,7 @@ Resources:
             git clone https://github.com/IvanGilC/amsa2.git /opt/amsa
 
             cd /opt/amsa
-            LDAP_SERVER=${OpenLDAPAMSAServer.PublicDnsName}
-            sudo bash amsa_p3_client.sh $LDAP_SERVER
+            sudo bash amsa_p3_client.sh ${OpenLDAPAMSAServer.PublicDnsName}
 
         TagSpecifications:
           - ResourceType: instance
